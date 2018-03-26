@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel=stylesheet href=jmobile/jquery.mobile-1.4.5.css />
+    <script src=jmobile/demos/js/jquery.js></script>
+    <script src=jmobile/jquery.mobile-1.4.5.js></script>
+</head>
+<body>
+    <script type="text/javascript"> /* Untuk Pindah Lokasi dan rumus Kalkulator*/
+        var input = "";
+        $(document).ready(function(){
+            $(".menu").change(function(){
+                window.location = $(this).val();
+            });
+        });
+        function dec2bin() {
+            alert("Mengconvert");
+            var x = document.getElementById("deci").value;
+            if ((/[^0-9]/g.test(x)) || x == "") {
+                alert ("You must enter an integer decimal number!");
+                document.getElementById("deci").value = "";
+                document.getElementById("deci").focus();
+                return false;
+            }
+            x = parseInt(x);
+            var bin = x.toString(2);
+            var hex = x.toString(16).toUpperCase();
+            var octal = x.toString(8);
+
+
+            var figs = "The binary representation of " + x + " is " + bin + "<br>";
+            figs = figs + "The hexadecimal representation of " + x + " is " + hex + "<br>";
+            figs = figs + "The octal representation of " + x + " is " + octal + "<br>";
+
+            document.getElementById("result").innerHTML = figs;
+        }
+        $( document ).on( "click", ".show-page-loading-msg", function() {
+            var $this = $( this ),
+            theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+            msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+            textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+            textonly = !!$this.jqmData( "textonly" );
+            html = $this.jqmData( "html" ) || "";
+            $.mobile.loading( "show", {
+                text: msgText,
+                textVisible: textVisible,
+                theme: theme,
+                textonly: textonly,
+                html: html
+            });
+        })
+        .on( "click", ".hide-page-loading-msg", function() {
+            $.mobile.loading( "hide" );
+        });
+    </script>
+
+    <div data-role="page" id="kalkulator">
+        <div data-role="header">
+         <fieldset data-role="controlgroup">
+            <label for="select-native-5">Menu</label>
+            <select name="select-native-5" class="menu">
+                <option value="#kalkulator">Kalkulator</option>
+                <option value="#rgb">RGB</option>
+                <option value="#rangkuman">Rangkuman</option>
+            </select>
+        </fieldset>
+    </div>
+    <div data-role="content">
+     <b>Insert Decimal Number: </b><input type = "text" name = "deci" id = "deci" size = "15" maxlength = "15" />
+     <input type="button" value="Convert!" onclick="dec2bin()" />
+     <br><br>
+     <div id = "result"></div>
+ </div>
+ <div data-role="footer" data-position=fixed>
+   <h1>Kalkulator</h1>
+</div>
+</div>
+
+<div data-role="page" id="rgb">
+    <div data-role="header">
+        <fieldset data-role="controlgroup">
+            <label for="select-native-5">Menu</label>
+            <select name="select-native-5" class="menu">
+                <option value="#rgb">RGB</option>
+                <option value="#kalkulator">Kalkulator</option>
+                <option value="#rangkuman">Rangkuman</option>
+            </select>
+        </fieldset>
+    </div>
+
+    <div data-role="content">
+        <input type="text" name="q" value="" id="colorchange";">
+        <button type="button" 
+        onclick="document.getElementById('id1').style.color = document.getElementById('colorchange').value">
+        Ubah Warna</button>
+        <h1 id="id1">My Color</h1>
+        <h2> Contoh Color #008CBA = Biru , #4CAF50 = Hijau , #f44336 = Red </h2>
+    </div>
+
+    <div data-role="footer" data-position=fixed>
+     <h1>RGB Converter</h1>
+ </div>
+
+</div>
+
+<div data-role="page" id="rangkuman">
+    <div data-role="header">
+       <fieldset data-role="controlgroup">
+        <label for="select-native-5">Menu</label>
+        <select name="select-native-5" class="menu">
+           <option value="#rangkuman">Rangkuman</option>
+           <option value="#kalkulator">Kalkulator</option>
+           <option value="#rgb">RGB</option>
+       </select>
+   </fieldset>
+</div>
+
+<div data-role="content">
+    <h2>Rangkuman  perintah perintah git</h2>
+    <ol data-role="listview">
+        <li>  Git init : untuk menginisialisasi repository kosong di /.git/ </li>
+        <li>  Git status : untuk melihat status dari repository jika tidak ada file yang masuk di tahap staging maka akan muncul list file di untracked files , jika tidak ada file sama sekali di repository maka akan muncul tulisan “Nothing to commit”</li>
+        <li>  Git add “nama file” : menambah file ke tahap staging</li>
+        <li>  Git commit –m : untuk memasukkan file ke dalam repository dari tahap staging </li>
+        <li>  Git log : untuk melihat history dari langkah langkah yang kita lakukan</li>
+        <li>  Git remote add “nama remote”  “alamat repositori” : untuk menhubungkan local dengan remote server yang dimiliki git</li>
+        <li>  Git push –u “nama remote” master : untuk memasukan data local ke remote </li>
+        <li>  Git pull : untuk mengsinkronisasi antara local dan remote </li>
+        <li>  Git diff : untuk melihat perbedaan commit terbaru dan yang sebelumnya</li>
+        <li> Git reset : untuk mengunstage file yang sedang di dalam tahap staging </li>
+        <li>  Git checkout : untuk mengembalikan file ke masa sebelum di commit , bisa juga dipakai untuk pindah ke branch lain </li>
+        <li> Git branch clean_up : untuk mengclear branch </li>
+        <li>Git rm : untuk menghapus file</li>  
+        <h2>Rangkuman Jquerymobile dan Angularjs di demo jmobile dan di googledrive </h2><br>
+
+        Perbdeaan Git Ui <br>
+        -   GitHub :    Gratis tidak berbayar untuk public , dan private berbayar<br>
+        Mudah dipakai<br>
+        Navigasi Mudah dimengerti<br>
+        -   GitLab :    Gratis untuk private dan public<br>
+        Mudah digunakan<br>
+        <p>a. VCS Lokal</p>
+        <p>Merupakan sebuah basis data local untuk menyimpan semua perubahan pada berkas yang berada dalam cakupan local</p>
+        <p>b. &nbsp;VCS Terpusat</p>
+        <p>Merupakan sebuah basis data untuk menyimpan semua perubahan pada berkas yang dapat berbagai orang mengerjakan sehingga banyak orang dapat berkolaborasi bersama sama dalam mengerjakan</p>
+        <p>c. VCS Terdistribusi</p>
+        <p>Merupakan sebuah basis data untuk menyimpan semua perubahan pada setiap repository.jadi, jika server mati, dan sistem berkolaborasi melalui server tersebut, maka klien manapun dapat mengirimkan salinan repositori tersebut kembali ke server. Setiap checkout pada DVCS merupakan sebuah backup dari keseluruhan data</p>
+        <p>3.</p>
+        <p>-git init untuk menginisalsi repository kosong</p>
+        <p>-Git add “nama file” : menambah file ke tahap staging</p>
+        <p>-Git commit –m : untuk memasukkan file ke dalam repository dari tahap staging</p>
+        <p>- Git remote add “nama remote” &nbsp;“alamat repositori” : untuk menhubungkan local dengan remote server yang dimiliki git</p>
+        <p>-Git push –u “nama remote” master : untuk memasukan data local ke remote</p>
+        <p>-Git pull : untuk mengsinkronisasi antara local dan remote</p>
+        <p>4.</p>
+        <p>Staging : tahapan file sebelum masuk ke repository</p>
+        <p>Before Staging : ketika file blom dimasukkan ke tahap staging sehingga harus di add terlebih dahulu</p>
+        <p>After Staging : file berada di repository dengan menggunkan perintah push</p>
+        <p>5.</p>
+        <p>Git add “nama file” : menambah file ke tahap staging</p>
+        <p>Git commit –m : untuk memasukkan file ke dalam repository dari tahap staging</p>
+        <p>Git push –u “nama remote” master : untuk memasukan data local ke remote</p>
+        <p>Git pull : untuk mengsinkronisasi antara local dan remote</p>
+        <p>Git diff : untuk melihat perbedaan commit terbaru dan yang sebelumnya</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <h1>Rangkuman Lain </h1>
+        <h1>Slider:</h1>
+        <input type="range" name="slider" id="slider" value="50" min="0" max="100">
+
+        <h1>Loader:</h1>
+        <button class="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Icon (default)</button>
+        <button class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="" data-inline="true">Icon + text</button>
+        <button class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Text only loader" data-inline="true">Text only</button>
+        <button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button>
+
+        <h1>Panel:</h1>
+        <p><strong>Left</strong> panel examples</p>
+        <a href="#leftpanel3" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Overlay</a>
+        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-theme="a">
+            <h3>Left Panel: Overlay</h3>
+            <p>This panel is positioned on the left with the overlay display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p>
+            <p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p>
+            <a href="#demo-links" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a>
+        </div>
+    </div>
+    <div data-role="footer" data-position=fixed>
+        <h1>Rangkuman</h1>
+    </div>
+</div>
+</body>
+</html>
